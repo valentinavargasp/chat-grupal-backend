@@ -33,13 +33,14 @@ let messages = [];
 //Instancia Socket.io backend.
 const io = new Server(httpServer)
 
-io.on('connection', () => {
-    console.log('Nuevo usuario conectado');
+io.on("connection", (socket) => {
+    console.log("Nuevo usuario conectado");
 
-    socket.on('message' , (data) => {
-        messages.push(data);
+    socket.on("message", (data) => {
+        messages.push(data); 
+        
+        //Emitimos mensaje para el cliente con todo el array de datos: 
+        io.emit("messagesLogs", messages); 
     })
-
-    //Mensaje para el front
 
 })

@@ -29,3 +29,15 @@ chatBox.addEventListener('keyup', (event) => {
         }
     }
 })
+
+//Mstrar los mensajes en la pantalla del navegador: 
+
+socket.on("messagesLogs", data => {
+    const log = document.getElementById("messagesLogs"); 
+    let messages = ""; 
+
+    data.forEach( message => {
+        messages = messages + `${message.user} dice ${message.message} <br>`;
+    })
+    log.innerHTML = messages; 
+})
